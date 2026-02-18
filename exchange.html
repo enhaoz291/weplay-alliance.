@@ -1,90 +1,171 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>點數兌換</title>
-    <style>
-        body {
-            background-color: #0f0f0f;
-            color: white;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        h1 { text-align:center; }
-        label { display:block; margin-top:15px; }
-        input[type="text"], select {
-        margin-top: 5px;
-        padding: 5px;
-        width: 100%;
-        max-width: 400px;
-        }
-        .gift-list input[type="checkbox"] {
-            margin-left:auto;
-        }                    
-      .gift-list label {
+<meta charset="UTF-8">
+<title>點數兌換</title>
+
+<style>
+
+/* ===== 全站基礎設定 ===== */
+body {
+    background-color: #0f0f0f;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* ===== 導覽列 ===== */
+nav {
+    background-color: #1a1a1a;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #4da6ff;
+}
+
+/* ===== 表單樣式 ===== */
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input[type="text"],
+select {
+    margin-top: 5px;
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+}
+
+/* ===== 禮物清單 ===== */
+.gift-list {
+    margin-top: 10px;
+    max-width: 400px;
+}
+
+.gift-list label {
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    padding: 8px 0;
+    padding: 10px 5px;
     border-bottom: 1px solid #222;
-    margin-top: 0;   /* 覆蓋上面全域label的margin */ 
-    flex-wrap: nowrap;
-      }
-      .gift-list label:hover {
-    background-color: #1a1a1a;
+    margin-top: 0;
 }
-    </style>
+
+.gift-list label:hover {
+    background-color: #1a1a1a;
+    cursor: pointer;
+}
+
+.gift-list input[type="checkbox"] {
+    margin-left: auto;
+    transform: scale(1.2);
+}
+
+/* ===== 按鈕 ===== */
+button {
+    margin-top: 25px;
+    padding: 10px 25px;
+    background: #4da6ff;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #3399ff;
+}
+
+/* ===== 訂單結果區 ===== */
+.cart {
+    margin-top: 25px;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    max-width: 500px;
+}
+
+</style>
 </head>
+
 <body>
-        <nav style="background-color:#1a1a1a; padding: 15px;">
-        <a href="index.html">首頁</a>
-        <a href="about.html">聯盟介紹</a>
-        <a href="families.html">家族列表</a>
-        <a href="join.html">加入我們</a>
-        <a href="exchange.html">1族/5族點數兌換</a>
-    </nav>
-<h1>1族/5族 點數兌換</h1>
+
+<nav>
+    <a href="index.html">首頁</a>
+    <a href="about.html">聯盟介紹</a>
+    <a href="families.html">家族列表</a>
+    <a href="join.html">加入我們</a>
+    <a href="exchange.html">1族/5族點數兌換</a>
+</nav>
+
+<h1>1族 / 5族 點數兌換</h1>
 
 <form id="exchangeForm">
 
-    <!-- 1. 選擇家族 -->
-    <label>選擇家族：
-        <select name="family">
-            <option value="1">1族</option>
-            <option value="5">5族</option>
-        </select>
-    </label>
+<!-- 1. 家族 -->
+<label>選擇家族：
+    <select name="family">
+        <option value="1">1族</option>
+        <option value="5">5族</option>
+    </select>
+</label>
 
-    <!-- 2. 成員ID -->
-    <label>成員ID：
-        <input type="text" name="memberID" placeholder="請輸入成員ID或名稱">
-    </label>
+<!-- 2. 成員ID -->
+<label>成員ID：
+    <input type="text" name="memberID" placeholder="請輸入成員ID或名稱">
+</label>
 
-    <!-- 3. 選擇禮物 --> 
-    <label>選擇禮物：</label>
-    <div class="gift-list">
-    <label>天選之人（300） 
-        <input type="checkbox" name="gift" value="天選之人" data-price="300"></label>
-    <label>活動100禮物（100） 
-        <input type="checkbox" name="gift" value="活動100禮物" data-price="100"></label>
-    <label>活動200禮物（200） 
-        <input type="checkbox" name="gift" value="活動200禮物" data-price="200"></label>
-    <label>活動1200禮盒（1200） 
-        <input type="checkbox" name="gift" value="活動1200禮盒" data-price="1200"></label>
-    <label>活動盲盒（1888） 
-        <input type="checkbox" name="gift" value="活動盲盒" data-price="1888"></label>
-        
-        <!-- 之後可自行新增 -->
+<!-- 3. 禮物 -->
+<label>選擇禮物：</label>
+<div class="gift-list">
 
-    </div>
+<label>天選之人（300）
+    <input type="checkbox" name="gift" value="天選之人" data-price="300">
+</label>
 
-    <!-- 4. 填寫金額 / 額外說明 -->
-    <label>備註：
-        <input type="text" name="extra" placeholder="請輸入文本">
-    </label>
+<label>活動100禮物（100）
+    <input type="checkbox" name="gift" value="活動100禮物" data-price="100">
+</label>
 
-    <!-- 5 & 6. 確認訂單 / 送出 -->
-    <button type="button" onclick="submitOrder()">送出訂單</button>
+<label>活動200禮物（200）
+    <input type="checkbox" name="gift" value="活動200禮物" data-price="200">
+</label>
+
+<label>活動1200禮盒（1200）
+    <input type="checkbox" name="gift" value="活動1200禮盒" data-price="1200">
+</label>
+
+<label>活動盲盒（1888）
+    <input type="checkbox" name="gift" value="活動盲盒" data-price="1888">
+</label>
+
+</div>
+
+<!-- 4. 備註 -->
+<label>備註：
+    <input type="text" name="extra" placeholder="請輸入文本">
+</label>
+
+<!-- 送出 -->
+<button type="button" onclick="submitOrder()">送出訂單</button>
 
 </form>
 
@@ -96,10 +177,9 @@ function submitOrder() {
     const family = form.family.value;
     const memberID = form.memberID.value.trim();
     const gifts = Array.from(form.gift)
-                   .filter(g => g.checked)
-                   .map(g => g.value + " (" + g.dataset.price + "點)");
+        .filter(g => g.checked)
+        .map(g => g.value + " (" + g.dataset.price + "點)");
     const extra = form.extra.value.trim();
-
     if (!memberID) {
         alert("請輸入成員ID");
         return;
@@ -108,7 +188,6 @@ function submitOrder() {
         alert("請至少選擇一個禮物");
         return;
     }
-
     const orderText = `
         家族: ${family}族<br>
         成員ID: ${memberID}<br>
@@ -120,6 +199,5 @@ function submitOrder() {
     document.getElementById('orderResult').innerHTML = orderText;
 }
 </script>
-
 </body>
 </html>
