@@ -12,7 +12,12 @@
         }
         h1 { text-align:center; }
         label { display:block; margin-top:15px; }
-        input, select { margin-top:5px; padding:5px; width:100%; max-width:400px; }
+        input[type="text"], select {
+        margin-top: 5px;
+        padding: 5px;
+        width: 100%;
+        max-width: 400px;
+        }
         .gift-list input[type="checkbox"] {
             margin-left:auto;
         }                    
@@ -23,6 +28,7 @@
     padding: 8px 0;
     border-bottom: 1px solid #222;
     margin-top: 0;   /* 覆蓋上面全域label的margin */ 
+    flex-wrap: nowrap;
       }
       .gift-list label:hover {
     background-color: #1a1a1a;
@@ -30,7 +36,7 @@
     </style>
 </head>
 <body>
-   <nav>
+        <nav style="background-color:#1a1a1a; padding: 15px;">
         <a href="index.html">首頁</a>
         <a href="about.html">聯盟介紹</a>
         <a href="families.html">家族列表</a>
