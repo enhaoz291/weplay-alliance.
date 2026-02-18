@@ -157,6 +157,10 @@ button:hover {
     <input type="checkbox" name="gift" value="活動盲盒" data-price="1888">
 </label>
 
+<label>其它禮物（請填寫完整名稱）
+    <input type="checkbox" name="gift" placeholder="請輸入禮物完整名稱">
+</label>
+
 </div>
 
 <!-- 4. 備註 -->
@@ -193,7 +197,7 @@ function submitOrder() {
         成員ID: ${memberID}<br>
         選擇禮物: ${gifts.join(', ')}<br>
         額外說明: ${extra || "無"}<br>
-        訂單狀態: 待人工確認
+        訂單狀態已送出，請等待管理員動作
     `;
 
     document.getElementById('orderResult').innerHTML = orderText;
