@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>點數兌換</title>
-
 <style>
-
 /* ===== 全站基礎設定 ===== */
 body {
     background-color: #0f0f0f;
@@ -58,11 +56,12 @@ select {
 /* ===== 禮物清單 ===== */
 .gift-list {
     margin-top: 10px;
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .gift-list label {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 5px;
     border-bottom: 1px solid #222;
@@ -71,16 +70,39 @@ select {
 
 .gift-list label:hover {
     background-color: #1a1a1a;
+}
+
+/* ===== 數量控制 ===== */
+.qty {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.qty input {
+    width: 40px;
+    text-align: center;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    font-size: 16px;
+}
+
+.qty button {
+    background: #4da6ff;
+    border: none;
+    color: white;
+    padding: 4px 8px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.gift-list input[type="checkbox"] {
-    margin-left: auto;
-    transform: scale(1.2);
+.qty button:hover {
+    background: #3399ff;
 }
 
-/* ===== 按鈕 ===== */
-button {
+/* ===== 送出按鈕 ===== */
+button.submit-btn {
     margin-top: 25px;
     padding: 10px 25px;
     background: #4da6ff;
@@ -90,7 +112,7 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+button.submit-btn:hover {
     background: #3399ff;
 }
 
@@ -100,9 +122,8 @@ button:hover {
     padding: 15px;
     background: #1a1a1a;
     border: 1px solid #333;
-    max-width: 500px;
+    max-width: 600px;
 }
-
 </style>
 </head>
 
@@ -137,28 +158,58 @@ button:hover {
 <label>選擇禮物：</label>
 <div class="gift-list">
 
-<label>天選之人（300）
-    <input type="checkbox" name="gift" value="天選之人" data-price="300">
+<label>
+    天選之人（300點）
+    <div class="qty">
+        <button type="button" onclick="changeQty(this,-1)">-</button>
+        <input type="text" value="0" readonly data-price="300" data-name="天選之人">
+        <button type="button" onclick="changeQty(this,1)">+</button>
+    </div>
 </label>
 
-<label>活動100禮物（100）
-    <input type="checkbox" name="gift" value="活動100禮物" data-price="100">
+<label>
+    活動100禮物（100點）
+    <div class="qty">
+        <button type="button" onclick="changeQty(this,-1)">-</button>
+        <input type="text" value="0" readonly data-price="100" data-name="活動100禮物">
+        <button type="button" onclick="changeQty(this,1)">+</button>
+    </div>
 </label>
 
-<label>活動200禮物（200）
-    <input type="checkbox" name="gift" value="活動200禮物" data-price="200">
+<label>
+    活動200禮物（200點）
+    <div class="qty">
+        <button type="button" onclick="changeQty(this,-1)">-</button>
+        <input type="text" value="0" readonly data-price="200" data-name="活動200禮物">
+        <button type="button" onclick="changeQty(this,1)">+</button>
+    </div>
 </label>
 
-<label>活動1200禮盒（1200）
-    <input type="checkbox" name="gift" value="活動1200禮盒" data-price="1200">
+<label>
+    活動1200禮盒（1200點）
+    <div class="qty">
+        <button type="button" onclick="changeQty(this,-1)">-</button>
+        <input type="text" value="0" readonly data-price="1200" data-name="活動1200禮盒">
+        <button type="button" onclick="changeQty(this,1)">+</button>
+    </div>
 </label>
 
-<label>活動盲盒（1888）
-    <input type="checkbox" name="gift" value="活動盲盒" data-price="1888">
+<label>
+    活動盲盒（1888點）
+    <div class="qty">
+        <button type="button" onclick="changeQty(this,-1)">-</button>
+        <input type="text" value="0" readonly data-price="1888" data-name="活動盲盒">
+        <button type="button" onclick="changeQty(this,1)">+</button>
+    </div>
 </label>
 
-<label>其它禮物（請於備註填寫禮物完整名稱）
-    <input type="checkbox" name="gift">
+<label>
+    其它禮物（請於備註填寫）
+    <div class="qty">
+        <button type="button" onclick="changeQty(this,-1)">-</button>
+        <input type="text" value="0" readonly data-price="0" data-name="其它禮物">
+        <button type="button" onclick="changeQty(this,1)">+</button>
+    </div>
 </label>
 
 </div>
@@ -169,39 +220,63 @@ button:hover {
 </label>
 
 <!-- 送出 -->
-<button type="button" onclick="submitOrder()">送出訂單</button>
+<button type="button" class="submit-btn" onclick="submitOrder()">送出訂單</button>
 
 </form>
 
 <div id="orderResult" class="cart"></div>
 
 <script>
-function submitOrder() {
+function changeQty(btn, delta){
+    const input = btn.parentElement.querySelector('input');
+    let val = parseInt(input.value);
+    val += delta;
+    if(val<0) val=0;
+    input.value = val;
+}
+
+function submitOrder(){
     const form = document.getElementById('exchangeForm');
     const family = form.family.value;
     const memberID = form.memberID.value.trim();
-    const gifts = Array.from(form.gift)
-        .filter(g => g.checked)
-        .map(g => g.value + " (" + g.dataset.price + "點)");
     const extra = form.extra.value.trim();
-    if (!memberID) {
+
+    if(!memberID){
         alert("請輸入成員ID");
         return;
     }
-    if (gifts.length === 0) {
+
+    const giftInputs = document.querySelectorAll('.gift-list input');
+    let orderList = [];
+    let totalPoints = 0;
+
+    giftInputs.forEach(input => {
+        const qty = parseInt(input.value);
+        if(qty>0){
+            const name = input.dataset.name;
+            const price = parseInt(input.dataset.price);
+            orderList.push(`${name} x ${qty} (${price*qty}點)`);
+            totalPoints += price*qty;
+        }
+    });
+
+    if(orderList.length===0){
         alert("請至少選擇一個禮物");
         return;
     }
+
     const orderText = `
         家族: ${family}族<br>
         成員ID: ${memberID}<br>
-        選擇禮物: ${gifts.join(', ')}<br>
+        選擇禮物: ${orderList.join(', ')}<br>
+        總點數: ${totalPoints}點<br>
         額外說明: ${extra || "無"}<br>
-        訂單狀態已送出，請等待管理員動作
+        訂單已送出，請等待管理員動作
     `;
 
     document.getElementById('orderResult').innerHTML = orderText;
 }
 </script>
+
 </body>
 </html>
