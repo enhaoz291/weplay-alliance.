@@ -15,12 +15,13 @@
         input, select { margin-top:5px; padding:5px; width:100%; max-width:400px; }
         .gift-list { margin-top:10px; }
         .gift-list label {
-         display: flex;             /* 水平排列文字和勾選框 */
-         justify-content: space-between; /* 左右對齊 */
-         align-items: center;       /* 垂直置中 */
-         margin-top: 10px;
-         max-width: 400px;
-       }
+        display: flex;
+        justify-content: space-between; /* 左右對齊 */
+        align-items: center;            /* 垂直置中 */  
+        margin-top: 10px;
+        max-width: 400px;
+        white-space: nowrap;            /* 不換行 */
+     }
     </style>
 </head>
 <body>
@@ -42,14 +43,19 @@
         <input type="text" name="memberID" placeholder="請輸入成員ID或名稱">
     </label>
 
-    <!-- 3. 選擇禮物 -->
+    <!-- 3. 選擇禮物 --> 
     <label>選擇禮物：</label>
     <div class="gift-list">
-    <label>天選之人（300） <input type="checkbox" name="gift" value="天選之人" data-price="300"></label>
-    <label>活動100禮物（100） <input type="checkbox" name="gift" value="活動100禮物" data-price="100"></label>
-    <label>活動200禮物（200） <input type="checkbox" name="gift" value="活動200禮物" data-price="200"></label>
-    <label>活動1200禮盒（1200） <input type="checkbox" name="gift" value="活動1200禮盒" data-price="1200"></label>
-    <label>活動盲盒（1888） <input type="checkbox" name="gift" value="活動盲盒" data-price="1888"></label>
+    <label>天選之人（300） 
+        <input type="checkbox" name="gift" value="天選之人" data-price="300"></label>
+    <label>活動100禮物（100） 
+        <input type="checkbox" name="gift" value="活動100禮物" data-price="100"></label>
+    <label>活動200禮物（200） 
+        <input type="checkbox" name="gift" value="活動200禮物" data-price="200"></label>
+    <label>活動1200禮盒（1200） 
+        <input type="checkbox" name="gift" value="活動1200禮盒" data-price="1200"></label>
+    <label>活動盲盒（1888） 
+        <input type="checkbox" name="gift" value="活動盲盒" data-price="1888"></label>
         
         <!-- 之後可自行新增 -->
 
