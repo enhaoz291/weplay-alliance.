@@ -268,8 +268,14 @@ function submitOrder(){
         return;
     }
 
+    // 如果選了其它禮物，備註必填
+    if(hasOtherGift && !extra){
+        alert("您選擇了『其它禮物』，請在備註填寫內容");
+        return;
+    }
+
     // 組合總點數文字
-    let totalPointsText = totalPoints + "點";
+    let totalPointsText = totalPoints + "積分";
     if(hasOtherGift){
         totalPointsText = totalPoints + " + 其它禮物所需點數";
     }
