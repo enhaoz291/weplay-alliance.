@@ -249,6 +249,7 @@ function submitOrder(){
     const giftInputs = document.querySelectorAll('.gift-list input');
     let orderList = [];
     let totalPoints = 0;
+    let hasOtherGift = false; // 判斷是否選了「其它禮物」
 
     giftInputs.forEach(input => {
         const qty = parseInt(input.value);
@@ -257,6 +258,8 @@ function submitOrder(){
             const price = parseInt(input.dataset.price);
             orderList.push(`${name} x ${qty} (${price*qty}點)`);
             totalPoints += price*qty;
+
+            if(name === "其它禮物") hasOtherGift = true; // 如果有選「其它禮物」
         }
     });
 
@@ -265,11 +268,17 @@ function submitOrder(){
         return;
     }
 
+    // 組合總點數文字
+    let totalPointsText = totalPoints + "點";
+    if(hasOtherGift){
+        totalPointsText = totalPoints + " + 其它禮物所需點數";
+    }
+
     const orderText = `
         家族: ${family}族<br>
         成員ID: ${memberID}<br>
         選擇禮物: ${orderList.join(', ')}<br>
-        總點數: ${totalPoints}點<br>
+        總點數: ${totalPointsText}<br>
         額外說明: ${extra || "無"}<br>
         訂單已送出，請等待管理員動作
     `;
