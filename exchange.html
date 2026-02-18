@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>點數兌換 - 地表最自由聯盟</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #1a1a1a;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 42px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #4da6ff;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            background-color: #333;
+            border: none;
+            color: white;
+        }
+
+        .gift-list label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .cart {
+            background-color: #111;
+            padding: 15px;
+            border: 1px solid #4da6ff;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4da6ff;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3399ff;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">首頁</a>
+        <a href="about.html">聯盟介紹</a>
+        <a href="families.html">家族列表</a>
+        <a href="join.html">加入我們</a>
+        <a href="exchange.html">1族/5族點數兌換</a>
+    </nav>
+
+    <h1>點數兌換系統</h1>
+
+    <div class="container">
+
+        <!-- ① 家族選擇 -->
+        <div class="section">
+            <h2>① 選擇家族</h2>
+            <label>
+                <input type="radio" name="family"> 1族
+            </label>
+            <label>
+                <input type="radio" name="family"> 5族
+            </label>
+        </div>
+
+        <!-- ② 成員資料 -->
+        <div class="section">
+            <h2>② 成員資訊</h2>
+            <label>成員ID / 名稱：
+                <input type="text" placeholder="請輸入">
+            </label>
+        </div>
+
+        <!-- ③ 禮物選擇 -->
+        <div class="section gift-list">
+            <h2>③ 選擇禮物（可多選）</h2>
+            <label><input type="checkbox" value="值天選之人"> 天選之人</label>
+            <label><input type="checkbox" value="值活動禮物"> 活動禮物（需填寫名稱）</label>
+            <label><input type="checkbox" value="值莊園禮物"> 莊園禮物（需填寫名稱）</label>
+            <label><input type="checkbox" value="值A"> 禮物A</label>
+            <label><input type="checkbox" value="值B"> 禮物B</label>
+            <label><input type="checkbox" value="值C"> 禮物C</label>
+        </div>
+
+        <!-- ④ 額外填寫 -->
+        <div class="section">
+            <h2>④ 額外填寫（如活動 / 莊園禮物）</h2>
+            <textarea rows="4" placeholder="請輸入禮物名稱或備註"></textarea>
+        </div>
+
+        <!-- ⑤ 金額 -->
+        <div class="section">
+            <h2>⑤ 填寫金額</h2>
+            <input type="number" placeholder="請輸入文本">
+        </div>
+
+        <!-- ⑥ 購物車顯示區（目前為展示用） -->
+        <div class="section">
+            <h2>⑥ 訂單預覽</h2>
+            <div class="cart">
+                <p>家族：請選擇</p>
+                <p>成員ID：請輸入</p>
+                <p>已選禮物：尚未選擇</p>
+                <p>金額：0</p>
+            </div>
+        </div>
+
+        <!-- ⑦ 送出 -->
+        <div class="section" style="text-align:center;">
+            <button>確認訂單</button>
+            <button>送出訂單</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
