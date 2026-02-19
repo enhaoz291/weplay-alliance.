@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>點數兌換</title>
 <style>
-/* ===== 全站基礎設定 ===== */
 body {
     background-color: #0f0f0f;
     color: white;
@@ -12,154 +11,25 @@ body {
     padding: 20px;
     margin: 0;
 }
-
-h1 {
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* ===== 導覽列 ===== */
-nav {
-    background-color: #1a1a1a;
-    padding: 15px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-nav a:hover {
-    color: #4da6ff;
-}
-
-/* ===== 表單樣式 ===== */
-label {
-    display: block;
-    margin-top: 15px;
-}
-
-input[type="text"],
-select {
-    margin-top: 5px;
-    padding: 8px;
-    width: 100%;
-    max-width: 400px;
-    background: #1a1a1a;
-    border: 1px solid #333;
-    color: white;
-}
-
-/* ===== 禮物清單 ===== */
-.gift-list {
-    margin-top: 10px;
-    max-width: 500px;
-}
-
-.gift-list label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5px;
-    border-bottom: 1px solid #222;
-    margin-top: 0;
-}
-
-.gift-list label:hover {
-    background-color: #1a1a1a;
-}
-
-/* ===== 數量控制 ===== */
-.qty {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.qty input {
-    width: 40px;
-    text-align: center;
-    background: #1a1a1a;
-    border: 1px solid #333;
-    color: white;
-    font-size: 16px;
-}
-
-.qty button {
-    background: #4da6ff;
-    border: none;
-    color: white;
-    padding: 4px 8px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.qty button:hover {
-    background: #3399ff;
-}
-
-/* ===== 送出按鈕 ===== */
-button.submit-btn {
-    margin-top: 25px;
-    padding: 10px 25px;
-    background: #4da6ff;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button.submit-btn:hover {
-    background: #3399ff;
-}
-
-/* ===== 訂單結果區 ===== */
-.cart {
-    margin-top: 25px;
-    padding: 15px;
-    background: #1a1a1a;
-    border: 1px solid #333;
-    max-width: 600px;
-}
+h1 { text-align:center; margin-top:30px; }
+label { display: block; margin-top: 15px; }
+.gift-list { margin-top:10px; max-width:500px; }
+.gift-list label { display:flex; justify-content:space-between; align-items:center; padding:10px 5px; border-bottom:1px solid #222; }
+.qty { display:flex; align-items:center; gap:5px; }
+.qty input { width:40px; text-align:center; background:#1a1a1a; border:1px solid #333; color:white; font-size:16px; }
+.qty button { background:#4da6ff; border:none; color:white; padding:4px 8px; cursor:pointer; font-size:16px; }
+.qty button:hover { background:#3399ff; }
+#totalPoints { margin-top:15px; font-weight:bold; }
+iframe { margin-top:20px; }
 </style>
 </head>
-
 <body>
 
-<nav>
-    <a href="index.html">首頁</a>
-    <a href="about.html">聯盟介紹</a>
-    <a href="families.html">家族列表</a>
-    <a href="join.html">加入我們</a>
-    <a href="exchange.html">5族/8族點數兌換</a>
-</nav>
+<h1>1族 / 5族 點數兌換</h1>
 
-<h1>5族 / 8族 點數兌換</h1>
-
-<form id="exchangeForm">
-
-<!-- 1. 家族 -->
-<label>選擇家族：
-    <select name="family">
-        <option value="5">5族</option>
-        <option value="8">8族</option>
-    </select>
-</label>
-
-<!-- 2. 成員ID -->
-<label>成員ID：
-    <input type="text" name="memberID" placeholder="請輸入成員ID或名稱">
-</label>
-
-<!-- 3. 禮物 -->
-<label>選擇禮物：</label>
 <div class="gift-list">
-
 <label>
-    天選之人（300點）
+    天選之人（300兑幣）
     <div class="qty">
         <button type="button" onclick="changeQty(this,-1)">-</button>
         <input type="text" value="0" readonly data-price="300" data-name="天選之人">
@@ -168,7 +38,7 @@ button.submit-btn:hover {
 </label>
 
 <label>
-    活動100禮物（100點）
+    活動100禮物（100兑幣）
     <div class="qty">
         <button type="button" onclick="changeQty(this,-1)">-</button>
         <input type="text" value="0" readonly data-price="100" data-name="活動100禮物">
@@ -177,7 +47,7 @@ button.submit-btn:hover {
 </label>
 
 <label>
-    活動200禮物（200點）
+    活動200禮物（200兑幣）
     <div class="qty">
         <button type="button" onclick="changeQty(this,-1)">-</button>
         <input type="text" value="0" readonly data-price="200" data-name="活動200禮物">
@@ -186,7 +56,7 @@ button.submit-btn:hover {
 </label>
 
 <label>
-    活動1200禮盒（1200點）
+    活動1200禮盒（1200兑幣）
     <div class="qty">
         <button type="button" onclick="changeQty(this,-1)">-</button>
         <input type="text" value="0" readonly data-price="1200" data-name="活動1200禮盒">
@@ -195,7 +65,7 @@ button.submit-btn:hover {
 </label>
 
 <label>
-    活動盲盒（1888點）
+    活動盲盒（1888兑幣）
     <div class="qty">
         <button type="button" onclick="changeQty(this,-1)">-</button>
         <input type="text" value="0" readonly data-price="1888" data-name="活動盲盒">
@@ -211,20 +81,13 @@ button.submit-btn:hover {
         <button type="button" onclick="changeQty(this,1)">+</button>
     </div>
 </label>
-
 </div>
 
-<!-- 4. 備註 -->
-<label>備註：
-    <input type="text" name="extra" placeholder="請輸入文本">
-</label>
+<div id="totalPoints">總點數: 0</div>
 
-<!-- 送出 -->
-<button type="button" class="submit-btn" onclick="submitOrder()">送出訂單</button>
-
-</form>
-
-<div id="orderResult" class="cart"></div>
+<!-- Google 表單嵌入 -->
+<iframe src="https://docs.google.com/forms/d/e/你的表單ID/viewform?embedded=true" 
+        width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
 
 <script>
 function changeQty(btn, delta){
@@ -233,63 +96,24 @@ function changeQty(btn, delta){
     val += delta;
     if(val<0) val=0;
     input.value = val;
+    updateTotal();
 }
 
-function submitOrder(){
-    const form = document.getElementById('exchangeForm');
-    const family = form.family.value;
-    const memberID = form.memberID.value.trim();
-    const extra = form.extra.value.trim();
-
-    if(!memberID){
-        alert("請輸入成員ID");
-        return;
-    }
-
-    const giftInputs = document.querySelectorAll('.gift-list input');
-    let orderList = [];
-    let totalPoints = 0;
-    let hasOtherGift = false; // 判斷是否選了「其它禮物」
-
-    giftInputs.forEach(input => {
+function updateTotal(){
+    const inputs = document.querySelectorAll('.gift-list input');
+    let total = 0;
+    let otherSelected = false;
+    inputs.forEach(input => {
         const qty = parseInt(input.value);
+        const price = parseInt(input.dataset.price);
         if(qty>0){
-            const name = input.dataset.name;
-            const price = parseInt(input.dataset.price);
-            orderList.push(`${name} x ${qty} (${price*qty}點)`);
-            totalPoints += price*qty;
-
-            if(name === "其它禮物") hasOtherGift = true; // 如果有選「其它禮物」
+            total += price*qty;
+            if(input.dataset.name === '其它禮物') otherSelected = true;
         }
     });
-
-    if(orderList.length===0){
-        alert("請至少選擇一個禮物");
-        return;
-    }
-
-    // 如果選了其它禮物，備註必填
-    if(hasOtherGift && !extra){
-        alert("您選擇了『其它禮物』，請在備註填寫內容");
-        return;
-    }
-
-    // 組合總點數文字
-    let totalPointsText = totalPoints + "積分";
-    if(hasOtherGift){
-        totalPointsText = totalPoints + " + 其它禮物所需點數";
-    }
-
-    const orderText = `
-        家族: ${family}族<br>
-        成員ID: ${memberID}<br>
-        選擇禮物: ${orderList.join(', ')}<br>
-        總點數: ${totalPointsText}<br>
-        額外說明: ${extra || "無"}<br>
-        訂單已送出，請等待管理員動作
-    `;
-
-    document.getElementById('orderResult').innerHTML = orderText;
+    let display = total;
+    if(otherSelected) display += " + 其它禮物所需點數";
+    document.getElementById('totalPoints').innerText = "總點數: " + display;
 }
 </script>
 
